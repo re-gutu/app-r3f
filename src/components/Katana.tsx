@@ -3,7 +3,7 @@
 import { Circle, Html, OrbitControls, Stats, useProgress } from '@react-three/drei';
 import { Canvas, useLoader } from '@react-three/fiber';
 import React, { Suspense } from 'react';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import * as THREE from 'three'; // Import THREE for types
 
 function Loader() {
@@ -41,10 +41,8 @@ const Scene: React.FC = () => {
             castShadow
             intensity={Math.PI * 1}
           />
-          <ambientLight intensity={0.99} /> {/* Added ambient light for better visibility */}
-          
+          <ambientLight intensity={0.99} /> 
           <KatanaModel />
-
           {/* <Circle args={[10]} rotation-x={-Math.PI / 2} receiveShadow>
             <meshStandardMaterial />
           </Circle> */}
