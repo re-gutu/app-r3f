@@ -12,15 +12,20 @@ const CubeScene = dynamic(() => import('@/components/Scene'), {
   ssr: false,
 });
 
-const SCENES = ['Katana', 'Cube'];
+const ExperienceScene = dynamic(() => import('@/components/Experience'), {
+  ssr: false,
+});
+
+const SCENES = ['Robot' , 'Katana', 'Cube' ];
 
 export default function Home() {
-  const [selectedScene, setSelectedScene] = useState<string>('Katana');
+  const [selectedScene, setSelectedScene] = useState<string>('Robot');
 
   return (
-    <main className="w-full h-screen relative overflow-hidden bg-black">
+    <main className="w-full h-screen relative overflow-hidden bg-none">
       {/* 3D Scene Layer */}
       <div className="absolute inset-0 w-full h-full z-0">
+        {selectedScene === 'Robot' && <ExperienceScene />}
         {selectedScene === 'Katana' && <KatanaScene />}
         {selectedScene === 'Cube' && <CubeScene />}
       </div>

@@ -24,12 +24,12 @@ function Cube() {
       onPointerOver={() => setHover(true)}
       onPointerOut={() => setHover(false)}
     >
-      <boxGeometry args={[2, 2, 2]} />
-      <meshStandardMaterial
-        color={hovered ? '#3f9fff' : '#3b82f6'}
-        roughness={0.3}
-        metalness={0.2}
-      />
+      <boxGeometry />
+      {/* <meshStandardMaterial
+        color={hovered ? '#3f9fff' : '#996699'}
+        roughness={0.5}
+      /> */}
+      <meshNormalMaterial />
     </mesh>
   );
 }
@@ -37,9 +37,9 @@ function Cube() {
 export default function Scene() {
   return (
     <div className="w-full h-full">
-      <Canvas camera={{ position: [0, 0, 7], fov: 50 }}>
-        <ambientLight intensity={0.5} />
-        <directionalLight position={[0, 10, 5]} intensity={1} />
+      <Canvas>
+        <ambientLight intensity={1} />
+        <directionalLight position={[0, 10, 5]} intensity={1} color={"green"} />
         <Cube />
       </Canvas>
     </div>
