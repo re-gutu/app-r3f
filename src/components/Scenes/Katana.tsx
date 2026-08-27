@@ -32,13 +32,11 @@ const Scene: React.FC = () => {
         <Suspense fallback={<Loader />}>
           <directionalLight
             position={[-1.3, 6.0, 4.4]}
-            castShadow
             intensity={Math.PI * 1}
           />
           <directionalLight
             color={'red'}
             position={[1.3, -6.0, -4.4]}
-            castShadow
             intensity={Math.PI * 1}
           />
           <ambientLight intensity={0.99} /> 
