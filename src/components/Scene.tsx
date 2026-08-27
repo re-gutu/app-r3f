@@ -36,7 +36,7 @@ function Cube() {
 
 export default function Scene() {
   return (
-    <div className="w-full h-screen">
+    <div className="w-full h-full">
       <Canvas camera={{ position: [0, 0, 7], fov: 50 }}>
         <ambientLight intensity={0.5} />
         <directionalLight position={[0, 10, 5]} intensity={1} />
