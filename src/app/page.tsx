@@ -4,15 +4,15 @@ import { useState } from 'react';
 import dynamic from 'next/dynamic';
 import SceneSelector from '@/layout/SceneSelector';
 
-const KatanaScene = dynamic(() => import('@/components/Katana'), {
+const KatanaScene = dynamic(() => import('@/components/Scenes/Katana'), {
   ssr: false,
 });
 
-const CubeScene = dynamic(() => import('@/components/Scene'), {
+const CubeScene = dynamic(() => import('@/components/Scenes/Scene'), {
   ssr: false,
 });
 
-const ExperienceScene = dynamic(() => import('@/components/Experience'), {
+const ExperienceScene = dynamic(() => import('@/components/Scenes/Experience'), {
   ssr: false,
 });
 

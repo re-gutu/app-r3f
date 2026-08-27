@@ -1,7 +1,7 @@
 import { OrbitControls, Environment } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import React,{ Suspense } from 'react'
-import { MechDrone } from '@/components/Mech_drone'
+import { MechDrone } from '@/components/Models/Mech_drone'
 
 function Experience() {
   return (
