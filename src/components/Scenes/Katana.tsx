@@ -1,6 +1,6 @@
 'use client'; 
 
-import { Circle, Html, OrbitControls, Stats, useProgress } from '@react-three/drei';
+import { Html, OrbitControls, Stats, useProgress } from '@react-three/drei';
 import { Canvas, useLoader } from '@react-three/fiber';
 import React, { Suspense } from 'react';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';

@@ -20,6 +20,15 @@ interface SceneInfo {
 }
 
 const SCENE_INFO_MAP: Record<string, SceneInfo> = {
+  Porsche: {
+    why: 'UI camera controls',
+    assetCredit: {
+      title: 'Porsche GT3 RS',
+      author: 'Black Snow',
+      license: 'CC-BY-4.0',
+      url: 'https://sketchfab.com/3d-models/porsche-gt3-rs-e738eae819c34d19a31dd066c45e0f3d',
+    },
+  },
   Elevator: {
     why: "Customizing Drei's camera control",
     assetCredit: {
