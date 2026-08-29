@@ -5,35 +5,27 @@ import dynamic from 'next/dynamic';
 import SceneSelector from '@/layout/SceneSelector';
 import SceneDetails from '@/layout/SceneDetails';
 
-const KatanaScene = dynamic(() => import('@/components/Scenes/Katana'), {
-  ssr: false,
-});
+type SceneName = 'Porsche' | 'Elevator' | 'Robot' | 'Katana' | 'Cube';
 
-const CubeScene = dynamic(() => import('@/components/Scenes/Scene'), {
-  ssr: false,
-});
+const SCENE_COMPONENTS = {
+  Porsche: dynamic(() => import('@/components/Scenes/Porsche'), { ssr: false }),
+  Elevator: dynamic(() => import('@/components/Scenes/Elevator'), { ssr: false }),
+  Robot: dynamic(() => import('@/components/Scenes/Experience'), { ssr: false }),
+  Katana: dynamic(() => import('@/components/Scenes/Katana'), { ssr: false }),
+  Cube: dynamic(() => import('@/components/Scenes/Scene'), { ssr: false }),
+};
 
-const ExperienceScene = dynamic(() => import('@/components/Scenes/Experience'), {
-  ssr: false,
-});
-
-const ElevatorScene = dynamic(() => import('@/components/Scenes/Elevator'), {
-  ssr: false,
-});
-
-const SCENES = ['Elevator', 'Robot', 'Katana', 'Cube'];
+const SCENES = Object.keys(SCENE_COMPONENTS) as SceneName[];
 
 export default function Home() {
-  const [selectedScene, setSelectedScene] = useState<string>('Elevator');
+  const [selectedScene, setSelectedScene] = useState<SceneName>('Porsche');
+  const SelectedScene = SCENE_COMPONENTS[selectedScene];
 
   return (
     <main className="w-full h-screen relative overflow-hidden bg-none">
       {/* 3D Scene Layer */}
       <div className="absolute inset-0 w-full h-full z-0">
-        {selectedScene === 'Robot' && <ExperienceScene />}
-        {selectedScene === 'Katana' && <KatanaScene />}
-        {selectedScene === 'Cube' && <CubeScene />}
-        {selectedScene === 'Elevator' && <ElevatorScene />}
+        <SelectedScene />
       </div>
 
       {/* Center-Left Scene Selector Overlay */}
@@ -41,7 +33,7 @@ export default function Home() {
         <SceneSelector
           scenes={SCENES}
           selectedScene={selectedScene}
-          onSelectScene={(scene) => setSelectedScene(scene)}
+          onSelectScene={(scene) => setSelectedScene(scene as SceneName)}
         />
       </div>
 

@@ -1,6 +1,6 @@
 'use client'; 
 
-import { Circle, Html, OrbitControls, Stats, useProgress } from '@react-three/drei';
+import { Html, OrbitControls, Stats, useProgress } from '@react-three/drei';
 import { Canvas, useLoader } from '@react-three/fiber';
 import React, { Suspense } from 'react';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
@@ -32,14 +32,14 @@ const Scene: React.FC = () => {
         <Suspense fallback={<Loader />}>
           <directionalLight
             position={[-1.3, 6.0, 4.4]}
-            intensity={Math.PI * 1}
+            intensity={8}
           />
           <directionalLight
             color={'red'}
             position={[1.3, -6.0, -4.4]}
-            intensity={Math.PI * 1}
+            intensity={5}
           />
-          <ambientLight intensity={0.99} /> 
+          <ambientLight intensity={2} /> 
           <KatanaModel />
           {/* <Circle args={[10]} rotation-x={-Math.PI / 2} receiveShadow>
             <meshStandardMaterial />
