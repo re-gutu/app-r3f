@@ -1,6 +1,6 @@
 import { Environment, Backdrop, CameraControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import React, { Suspense, useRef, useState } from "react";
+import React, { Suspense, useEffect, useRef, useState } from "react";
 import { Porsche } from "@/components/Models/Porsche";
 
 export default function Porsche_() {
@@ -23,8 +23,30 @@ export default function Porsche_() {
     controlsRef.current?.setLookAt(...view.position, ...view.target, true);
   };
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      const key = event.key.toLowerCase();
+      const isLeftKey = key === "arrowleft" || key === "a";
+      const isRightKey = key === "arrowright" || key === "d";
+
+      if (!isLeftKey && !isRightKey) return;
+
+      event.preventDefault();
+
+      const currentIndex = views.findIndex((view) => view.id === activeView);
+      const nextIndex = isLeftKey
+        ? (currentIndex - 1 + views.length) % views.length
+        : (currentIndex + 1) % views.length;
+
+      handleViewChange(views[nextIndex]);
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [activeView, views]);
+
   return (
-    <div className="relative w-full h-full bg-neutral-950">
+    <div className="relative w-full h-full">
       {/* UI Overlay */}
       <div className="absolute right-8 top-1/2 -translate-y-1/2 flex flex-col gap-2 z-10">
         {views.map((view) => (
@@ -40,6 +62,11 @@ export default function Porsche_() {
             {view.label}
           </button>
         ))}
+      </div>
+
+      {/* UI Overlay */}
+      <div className="absolute left-1/2 top-11/12 -translate-x-1/2 flex z-10 font-mono text-black/80">
+  <span>{"Press 'A' (<) or 'D' (>)"}</span>        
       </div>
 
       <Canvas shadows camera={{ position: [2.3, 1.2, 3.7], fov: 45 }}>

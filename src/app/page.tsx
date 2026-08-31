@@ -1,4 +1,3 @@
-// src/app/page.tsx (or your Home.tsx path)
 "use client";
 
 import { useState } from "react";
