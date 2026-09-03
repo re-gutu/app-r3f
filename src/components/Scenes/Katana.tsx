@@ -1,15 +1,9 @@
 'use client'; 
 
-import { Html, OrbitControls, Stats, useProgress } from '@react-three/drei';
+import { OrbitControls, Sky, Stats } from '@react-three/drei';
 import { Canvas, useLoader } from '@react-three/fiber';
 import React, { Suspense } from 'react';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import * as THREE from 'three'; // Import THREE for types
-
-function Loader() {
-  const { progress } = useProgress()
-  return <Html center>{progress.toFixed(0)} % loaded</Html>
-}
 
 // 1. Extract the model loading into its own component inside Suspense
 function KatanaModel() {
@@ -26,10 +20,9 @@ function KatanaModel() {
 
 const Scene: React.FC = () => {
   return (
-    // 2. Wrap the Canvas inside a container with a defined height
     <div className='w-full h-full'>
       <Canvas camera={{ position: [0, 0, 50] }} shadows>
-        <Suspense fallback={<Loader />}>
+        <Suspense fallback={null}>
           <directionalLight
             position={[-1.3, 6.0, 4.4]}
             intensity={8}

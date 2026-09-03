@@ -1,34 +1,22 @@
-import { OrbitControls, Environment, Loader } from '@react-three/drei'
-import { Canvas } from '@react-three/fiber'
-import React,{ Suspense } from 'react'
-import { MechDrone } from '@/components/Models/Mech_drone'
+import { OrbitControls } from "@react-three/drei";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { useMemo, useRef } from "react";
+import * as THREE from "three";
+import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 
-function Experience() {
+export default function Experience() {
   return (
-    <div className=' w-full h-full'>
-        <Canvas >
+    <div className="w-full h-full bg-neutral-900">
+      <Canvas camera={{ position: [0, 0, 8], fov: 45 }}>
+        <OrbitControls />
+        <ambientLight intensity={0.5} />
+        <directionalLight position={[5, 5, 5]} intensity={2} />
 
-        <OrbitControls target={[0, 0.5, 0]}/>
-        <ambientLight intensity={2} />
-        <directionalLight 
-            color={'#EEAA55'}
-            position={[5, 5, 5]} 
-            intensity={2.0}
-        />
-    <Suspense fallback={null}>
-        <MechDrone position={[0, -1, 0]}/>
-        </Suspense>
-        </Canvas>
-        {/* Render Drei's ready-to-use loader sibling to Canvas */}
-      <Loader
-        containerStyles={{ background: '#0a0a0a' }}
-        innerStyles={{ width: '200px', backgroundColor: '#262626' }}
-        barStyles={{ backgroundColor: '#ffffff', height: '4px' }}
-        dataStyles={{ color: '#a3a3a3', fontSize: '12px' }}
-        dataInterpolation={(p) => `Loading ${p.toFixed(0)}%`}
-      />
+        <mesh>
+          <boxGeometry args={[2, 2, 2]} />
+          <meshNormalMaterial />
+        </mesh>
+      </Canvas>
     </div>
-  )
+  );
 }
-
-export default Experience

@@ -7,14 +7,15 @@ import { Loader } from "@react-three/drei";
 import SceneSelector from "@/layout/SceneSelector";
 import SceneDetails from "@/layout/SceneDetails";
 
-type SceneName =  "Elevator" | "Porsche" |"Robot" | "Katana" | "Cube";
+type SceneName =  "Elevator" | "Porsche" |"Robot" | "Katana" | "Cube" | "Animated";
 
 const SCENE_COMPONENTS = {
+  Animated: dynamic(() => import("@/components/Scenes/Experience"), { ssr: false }),
   Porsche: dynamic(() => import("@/components/Scenes/Porsche"), { ssr: false }),
   Elevator: dynamic(() => import("@/components/Scenes/Elevator"), {
     ssr: false,
   }),
-  Robot: dynamic(() => import("@/components/Scenes/Experience"), {
+  Robot: dynamic(() => import("@/components/Scenes/Robot"), {
     ssr: false,
   }),
   Katana: dynamic(() => import("@/components/Scenes/Katana"), { ssr: false }),
@@ -24,11 +25,11 @@ const SCENE_COMPONENTS = {
 const SCENES = Object.keys(SCENE_COMPONENTS) as SceneName[];
 
 export default function Home() {
-  const [selectedScene, setSelectedScene] = useState<SceneName>("Porsche");
+  const [selectedScene, setSelectedScene] = useState<SceneName>("Animated");
   const SelectedScene = SCENE_COMPONENTS[selectedScene];
 
   return (
-    <main className="w-full h-screen relative overflow-hidden bg-neutral-950">
+    <main className="w-full h-screen relative overflow-hidden ">
       {/* 1. AnimatePresence handles the smooth unmounting of the old scene */}
       <AnimatePresence mode="wait">
         <motion.div

@@ -6,7 +6,6 @@ import type { Mesh } from 'three';
 
 function Cube() {
   const meshRef = useRef<Mesh>(null);
-  const [hovered, setHover] = useState(false);
   const [active, setActive] = useState(false);
 
   useFrame((_state, delta) => {
@@ -21,8 +20,6 @@ function Cube() {
       ref={meshRef}
       scale={active ? 1.25 : 1}
       onClick={() => setActive(!active)}
-      onPointerOver={() => setHover(true)}
-      onPointerOut={() => setHover(false)}
     >
       <boxGeometry />
       {/* <meshStandardMaterial

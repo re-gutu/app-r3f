@@ -64,7 +64,6 @@ export default function Porsche_() {
         ))}
       </div>
 
-      {/* UI Overlay */}
       <div className="absolute left-1/2 top-11/12 -translate-x-1/2 flex z-10 font-mono text-black/80">
   <span>{"Press 'A' (<) or 'D' (>)"}</span>        
       </div>
